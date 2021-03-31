@@ -536,6 +536,9 @@ export default class {
       });
     }
     if (this.hasSession()) {
+      this._getSession().on("accepted", (...event) => {
+        this._emit("accepted", this, ...event);
+      });
       this._getSession().on("progress", (...event) => {
         this._emit("progress", this, ...event);
       });
