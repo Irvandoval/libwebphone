@@ -504,6 +504,10 @@ export default class extends lwpRenderer {
           return this._shimGetUserMedia(constraints).then((mediaStream) => {
             this._updateMediaElements(mediaStream);
             return mediaStream;
+          })
+          .catch((err) => {
+            console.error('Error again', constraints);
+            this._emit("getUserMedia.error", this, err);
           });
         }
       });
