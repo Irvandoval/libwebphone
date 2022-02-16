@@ -790,6 +790,7 @@ export default class extends lwpRenderer {
   }
 
   _createLocalSourceStream(mediaStream) {
+    console.info('it comes to createlocalSourceStream', mediaStream);
     const audioTrack = mediaStream && mediaStream.getTracks().find((track) => {
       return track.kind == "audio";
     });
