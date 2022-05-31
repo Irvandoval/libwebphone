@@ -400,17 +400,18 @@
         userAgent: {
           renderTargets: ["user_agent"],
           transport: {
-            sockets: ["wss://{SIP_SERVER}:5065"],
+            sockets: ['wss://sandbox.2600hz.com:5065'],
             recovery_max_interval: 30,
             recovery_min_interval: 2,
           },
           authentication: {
-            username: "{SIP_USERNAME}",
-            password: "{SIP_PASSWORD}",
-            realm: "{SIP_DOMAIN}",
+            username: "user_t3U6UmkfRX",
+            password: "2WxaQQhV356k",
+            //jwt: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjkyZGFkYTczNDIxMjhjYzE3MmJlNDAwMmNmOWEyNWI4In0.eyJpc3MiOiJrYXpvbyIsImlkZW50aXR5X3NpZyI6Ik9ENl9WakRXRXR1cmlQeGpQTm9CSThaZ1pteVdSYl9oUkMzZzJpcjdhT28iLCJleHAiOjE2NDIxMTI3NjYsIm1ldGhvZCI6ImNiX2VwaGVtZXJhbF90b2tlbnMiLCJhY2NvdW50X2lkIjoiZGQ1NGZkMjM0ODQ5M2E5NzgwOGFmMzg3YWZhYTM2M2YiLCJzdWIiOiJjNmIxY2VjZTFmZmUzYTgyNGU2ZDk1NmIzMTA5YmY0ZUBkZDU0ZmQyMzQ4NDkzYTk3ODA4YWYzODdhZmFhMzYzZiIsInNlY3JldCI6ImRhdGEiLCJzY29wZSI6InNpcCIsImlkIjoiYzZiMWNlY2UxZmZlM2E4MjRlNmQ5NTZiMzEwOWJmNGUiLCJTSVAtSW5mbyI6eyJVc2VyLUFnZW50Ijp7IlVzZXJuYW1lIjoiaXJ2aW4iLCJSZWFsbSI6InNpcC5zcXVhbmNoeS4yNjAwaHouZGV2In0sIkVuZHBvaW50LU1ldGEtSUQiOiI4ZTkzMGY5NGZlN2U1ZGYxZjY1ZDQ3Y2I1OTkxNjM4MSJ9fQ.F_iD1YLEnJIBGQae_lLVDTgxlrWxoYrsZGYb06-BVeMswtb7uUycILSZNDu4mIsi47WtUXFhncgKkAgE0jUyHmB6kkfeYAmZlFw7m2n_q1t5W7nQXm-srrEenaKTlxsvgFo9sdbOLluc9v0mNkcljrm0tU3fx3DJD7KCbNtbuaVulPtwC7B0cNjjLQnJ3s20Vs086fIaMV4AZ-c6nkzYEIB3j_GLTMZRGgOzW3QkBpNT919n5704CZa-TzYV1GObpSFKX2wIXCRlYPAR9RrRJo96jHk5MfvmQBx8QHC10_FX_8fxAuWjvD6hGb40nsrMDknVYrji8NO_mDrg3V_4lw',
+            realm: "vbbz65q.sb.2600hz.com"
           },
           user_agent: {
-            //contact_uri: '',
+            //contact_uri: 'sip:irvin@sip.squanchy.2600hz.dev',
             //display_name: '',
             instance_id: "8f1fa16a-1165-4a96-8341-785b1ef24f12",
             no_answer_timeout: 60,
@@ -429,6 +430,12 @@
       webphone.on("userAgent.recieved.notify", (lwp, userAgent, data) => {
         let request = data.request;
         console.log(request.body);
+      });
+
+      webphone.on('userAgent.registration.registered', () => {
+        console.info('Device registered, starting call');
+        // connect with user
+        webphone.getUserAgent().call(`conference+294ed51abd6931232b9f619926b969ba`);
       });
       webphone.on(
         "mediaDevices.getUserMedia.error",
@@ -465,7 +472,7 @@
         <div class="col" style="border-right: dashed;">
           <div>
             <button
-              onclick="webphone.getUserAgent().start('user_q5eNt95vwv', 'cxNMVV2BD47J');"
+              onclick="webphone.getUserAgent().start('irvin');"
             >
               Start Mahfuzel New Softphone (1009)
             </button>
